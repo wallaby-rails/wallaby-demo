@@ -20,6 +20,13 @@ ActiveRecord::Schema.define(version: 20150928100629) do
     t.string "name"
   end
 
+  create_table "product_details", force: :cascade do |t|
+    t.integer "product_id"
+    t.text    "meta_data"
+  end
+
+  add_index "product_details", ["product_id"], name: "index_product_details_on_product_id", using: :btree
+
   create_table "products", force: :cascade do |t|
     t.integer  "category_id"
     t.string   "sku"
@@ -33,10 +40,16 @@ ActiveRecord::Schema.define(version: 20150928100629) do
     t.datetime "published_at"
   end
 
+  add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree
+
   create_table "products_tags", id: false, force: :cascade do |t|
-    t.integer "tag_id"
-    t.integer "product_id"
+    t.integer "product_id", null: false
+    t.integer "tag_id",     null: false
   end
+
+  add_index "products_tags", ["product_id", "tag_id"], name: "index_products_tags_on_product_id_and_tag_id", using: :btree
+  add_index "products_tags", ["product_id"], name: "index_products_tags_on_product_id", using: :btree
+  add_index "products_tags", ["tag_id"], name: "index_products_tags_on_tag_id", using: :btree
 
   create_table "tags", force: :cascade do |t|
     t.string "name"

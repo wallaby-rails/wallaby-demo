@@ -13,6 +13,11 @@ class AddProducts < ActiveRecord::Migration
       t.datetime  :published_at
     end
 
+    create_table :product_details do |t|
+      t.integer   :product_id
+      t.text      :meta_data
+    end
+
     create_table :categories do |t|
       t.string    :name
     end
@@ -21,9 +26,13 @@ class AddProducts < ActiveRecord::Migration
       t.string    :name
     end
 
-    create_table :products_tags, id: false do |t|
-      t.integer   :tag_id
-      t.integer   :product_id
+    create_join_table :products, :tags do |t|
+      t.index :product_id
+      t.index :tag_id
     end
+
+    add_index :products, :category_id
+    add_index :product_details, :product_id
+    add_index :products_tags, [:product_id, :tag_id]
   end
 end
