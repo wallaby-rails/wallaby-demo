@@ -24,7 +24,7 @@ end
   product.available_to_time = FFaker::Time.date
   product.published_at = FFaker::Time.date
   product.save!
-  details = product.build_product_details
+  details = product.build_product_detail
   details.meta_data = FFaker::Lorem.paragraph
   details.save!
 end
