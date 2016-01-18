@@ -1,12 +1,13 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 ruby '2.2.3'
 
-gem 'wallaby', git: 'https://github.com/reinteractive-open/wallaby.git'
+gem 'wallaby'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 4.2.4'
 gem 'bootstrap-sass'
+gem 'devise-bootstrap-views'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
@@ -29,7 +30,12 @@ gem 'sdoc', group: :doc
 
 gem 'ffaker'
 
-gem 'rails_12factor'
+gem 'kaminari'
+gem 'devise'
+
+group :production do
+  gem 'rails_12factor'
+end
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -42,7 +48,10 @@ gem 'rails_12factor'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'pry-rails'
+  gem 'ffaker'
 end
 
 group :development do
