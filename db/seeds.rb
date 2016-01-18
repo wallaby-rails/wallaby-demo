@@ -1,4 +1,4 @@
-[ Category, Tag, Product, User ].each do |model|
+[ Category, Order, Order::Item, Picture, Product, ProductDetail, Tag, User ].each do |model|
   ActiveRecord::Base.connection.execute("TRUNCATE #{ model.table_name } RESTART IDENTITY")
 end
 
