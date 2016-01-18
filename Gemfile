@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 ruby '2.2.3'
 
-gem 'wallaby'
+gem 'wallaby', git: 'https://github.com/reinteractive-open/wallaby.git'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 4.2.4'
