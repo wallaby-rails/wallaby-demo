@@ -11,10 +11,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151221045618) do
+ActiveRecord::Schema.define(version: 20160316012050) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
+  enable_extension "ltree"
+  enable_extension "citext"
+
+  create_table "all_postgres_types", force: :cascade do |t|
+    t.string      "string"
+    t.text        "text"
+    t.integer     "integer"
+    t.float       "float"
+    t.decimal     "decimal"
+    t.datetime    "datetime"
+    t.time        "time"
+    t.date        "date"
+    t.daterange   "daterange"
+    t.numrange    "numrange"
+    t.tsrange     "tsrange"
+    t.tstzrange   "tstzrange"
+    t.int4range   "int4range"
+    t.int8range   "int8range"
+    t.binary      "binary"
+    t.boolean     "boolean"
+    t.integer     "bigint",      limit: 8
+    t.xml         "xml"
+    t.tsvector    "tsvector"
+    t.hstore      "hstore"
+    t.inet        "inet"
+    t.cidr        "cidr"
+    t.macaddr     "macaddr"
+    t.uuid        "uuid"
+    t.json        "json"
+    t.jsonb       "jsonb"
+    t.ltree       "ltree"
+    t.citext      "citext"
+    t.point       "point"
+    t.bit         "bit",         limit: 1
+    t.bit_varying "bit_varying"
+    t.money       "money",                 scale: 2
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"

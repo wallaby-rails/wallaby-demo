@@ -2,12 +2,11 @@ source 'http://rubygems.org'
 
 ruby '2.2.3'
 
+# gem 'wallaby', path: '../wallaby'
 gem 'wallaby', git: 'https://github.com/reinteractive-open/wallaby.git'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 4.2.4'
-gem 'bootstrap-sass'
-gem 'devise-bootstrap-views'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
@@ -30,8 +29,8 @@ gem 'sdoc', group: :doc
 
 gem 'ffaker'
 
-gem 'kaminari'
 gem 'devise'
+gem 'devise-bootstrap-views'
 
 group :production do
   gem 'rails_12factor'
@@ -48,10 +47,13 @@ end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'rack-mini-profiler'
+  gem 'flamegraph'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'pry-rails'
-  gem 'ffaker'
+  gem 'byebug'
+  gem 'pry-byebug'
 end
 
 group :development do
@@ -61,4 +63,3 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
-
