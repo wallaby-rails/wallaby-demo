@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/reinteractive-open/wallaby.git
-  revision: 8eb46109bf1e82360f37bd0f27d60ea146aee6f1
+  revision: 162d3373956d72a513fd5405733105eba16b082e
   specs:
     wallaby (5.0.1)
       bootstrap-sass
