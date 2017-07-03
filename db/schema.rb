@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160316012050) do
+ActiveRecord::Schema.define(version: 20170512082015) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,7 +35,7 @@ ActiveRecord::Schema.define(version: 20160316012050) do
     t.int8range   "int8range"
     t.binary      "binary"
     t.boolean     "boolean"
-    t.integer     "bigint",      limit: 8
+    t.bigint      "bigint"
     t.xml         "xml"
     t.tsvector    "tsvector"
     t.hstore      "hstore"
@@ -64,14 +63,17 @@ ActiveRecord::Schema.define(version: 20160316012050) do
     t.integer "quantity"
     t.float   "price"
     t.float   "total"
+    t.index ["order_id"], name: "index_order_items_on_order_id", using: :btree
+    t.index ["product_id"], name: "index_order_items_on_product_id", using: :btree
   end
-
-  add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
-  add_index "order_items", ["product_id"], name: "index_order_items_on_product_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.string   "customer"
     t.datetime "ordered_at"
+  end
+
+  create_table "people", force: :cascade do |t|
+    t.string "type"
   end
 
   create_table "pictures", force: :cascade do |t|
@@ -81,16 +83,14 @@ ActiveRecord::Schema.define(version: 20160316012050) do
     t.binary   "file"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.index ["imageable_type", "imageable_id"], name: "index_pictures_on_imageable_type_and_imageable_id", using: :btree
   end
-
-  add_index "pictures", ["imageable_id"], name: "index_pictures_on_imageable_id", using: :btree
 
   create_table "product_details", force: :cascade do |t|
     t.integer "product_id"
     t.text    "meta_data"
+    t.index ["product_id"], name: "index_product_details_on_product_id", using: :btree
   end
-
-  add_index "product_details", ["product_id"], name: "index_product_details_on_product_id", using: :btree
 
   create_table "products", force: :cascade do |t|
     t.integer  "category_id"
@@ -103,18 +103,16 @@ ActiveRecord::Schema.define(version: 20160316012050) do
     t.date     "available_to_date"
     t.time     "available_to_time"
     t.datetime "published_at"
+    t.index ["category_id"], name: "index_products_on_category_id", using: :btree
   end
-
-  add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree
 
   create_table "products_tags", id: false, force: :cascade do |t|
     t.integer "product_id", null: false
     t.integer "tag_id",     null: false
+    t.index ["product_id", "tag_id"], name: "index_products_tags_on_product_id_and_tag_id", unique: true, using: :btree
+    t.index ["product_id"], name: "index_products_tags_on_product_id", using: :btree
+    t.index ["tag_id"], name: "index_products_tags_on_tag_id", using: :btree
   end
-
-  add_index "products_tags", ["product_id", "tag_id"], name: "index_products_tags_on_product_id_and_tag_id", using: :btree
-  add_index "products_tags", ["product_id"], name: "index_products_tags_on_product_id", using: :btree
-  add_index "products_tags", ["tag_id"], name: "index_products_tags_on_tag_id", using: :btree
 
   create_table "tags", force: :cascade do |t|
     t.string "name"
@@ -133,9 +131,8 @@ ActiveRecord::Schema.define(version: 20160316012050) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

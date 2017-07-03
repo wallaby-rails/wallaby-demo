@@ -1,12 +1,12 @@
 source 'http://rubygems.org'
 
-ruby '2.2.3'
+ruby '2.2.2'
 
-# gem 'wallaby', path: '../wallaby'
+# gem 'wallaby', path: '../vagrant'
 gem 'wallaby', git: 'https://github.com/reinteractive-open/wallaby.git'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.2.4'
+gem 'rails', '>= 5'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
@@ -47,8 +47,10 @@ end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'rack-mini-profiler'
-  gem 'flamegraph'
+  # gem 'rack-mini-profiler'
+  # gem 'flamegraph'
+  gem 'fast_stack'
+  # gem 'memory_profiler'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'pry-rails'

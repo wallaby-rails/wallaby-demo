@@ -34,7 +34,7 @@ class AddProducts < ActiveRecord::Migration
     add_index :products, :category_id
     add_index :product_details, :product_id
     add_index :products_tags, [ :product_id, :tag_id ], unique: true
-    add_index :products_tags, :product_id
-    add_index :products_tags, :tag_id
+    # add_index :products_tags, :product_id
+    # add_index :products_tags, :tag_id
   end
 end
