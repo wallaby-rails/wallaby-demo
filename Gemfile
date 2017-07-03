@@ -6,7 +6,7 @@ ruby '2.2.2'
 gem 'wallaby', git: 'https://github.com/reinteractive-open/wallaby.git'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '>= 5'
+gem 'rails', '~> 5.0.0'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
@@ -29,7 +29,7 @@ gem 'sdoc', group: :doc
 
 gem 'ffaker'
 
-gem 'devise'
+gem 'devise', '~> 4.2.0'
 gem 'devise-bootstrap-views'
 
 group :production do
