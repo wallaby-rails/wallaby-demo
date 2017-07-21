@@ -29,9 +29,6 @@ gem 'sdoc', group: :doc
 
 gem 'ffaker'
 
-gem 'devise', '~> 4.2.0'
-gem 'devise-bootstrap-views'
-
 group :production do
   gem 'rails_12factor'
 end
