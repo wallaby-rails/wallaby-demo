@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 ruby '2.2.2'
 
-# gem 'wallaby', path: '../vagrant'
+# gem 'wallaby', path: '../wallaby'
 gem 'wallaby', git: 'https://github.com/reinteractive-open/wallaby.git'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

@@ -1,4 +1,4 @@
-[ AllPostgresType, Category, Order, Order::Item, Picture, Product, ProductDetail, Tag, User ].each do |model|
+[ AllPostgresType, Category, Order, Order::Item, Picture, Product, ProductDetail, Tag ].each do |model|
   ActiveRecord::Base.connection.execute("TRUNCATE #{ model.table_name } RESTART IDENTITY")
 end
 
@@ -73,10 +73,10 @@ end
   details.save!
 end
 
-1.times.each do
-  user = User.new
-  user.email = 'tian@example.com'
-  user.password = 'password'
-  user.password_confirmation = 'password'
-  user.save!
-end
+# 1.times.each do
+#   user = User.new
+#   user.email = 'tian@example.com'
+#   user.password = 'password'
+#   user.password_confirmation = 'password'
+#   user.save!
+# end
