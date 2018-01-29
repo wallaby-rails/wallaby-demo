@@ -45,7 +45,7 @@ end
 
 10.times.each do
   category = Category.new
-  category.name = FFaker::Product.product.split(' ').sample.downcase
+  category.name = FFaker::Product.product.split(' ').sample
   category.save!
 end
 
