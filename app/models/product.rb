@@ -1,5 +1,4 @@
 class Product < ActiveRecord::Base
-  has_one :product_detail
   has_one :picture, as: :imageable
   has_many :items, class_name: Order::Item.name
   has_many :orders, through: :items

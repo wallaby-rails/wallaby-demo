@@ -1,14 +1,14 @@
 source 'http://rubygems.org'
 
-ruby '2.2.2'
+ruby '2.4.3'
 
 # gem 'wallaby', path: '../wallaby'
-gem 'wallaby', git: 'https://github.com/reinteractive-open/wallaby.git'
+gem 'wallaby', '~> 5.1.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.0'
+gem 'rails', '~> 5.1.0'
 # Use sqlite3 as the database for Active Record
-gem 'pg'
+gem 'pg', '~> 0.21.0'
 # Use SCSS for stylesheets
 gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
@@ -29,6 +29,8 @@ gem 'sdoc', group: :doc
 
 gem 'ffaker'
 
+gem 'devise'
+
 group :production do
   gem 'rails_12factor'
 end
@@ -46,7 +48,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   # gem 'rack-mini-profiler'
   # gem 'flamegraph'
-  gem 'fast_stack'
+  # gem 'fast_stack'
   # gem 'memory_profiler'
   gem 'better_errors'
   gem 'binding_of_caller'

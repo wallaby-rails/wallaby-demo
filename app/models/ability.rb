@@ -29,6 +29,11 @@ class Ability
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
     can :manage, :all
+    if user.admin?
+      cannot :destroy, User
+    else
+      cannot :manage, User
+    end
     # cannot [ :show, :update, :destroy ], Product, featured: true
   end
 end

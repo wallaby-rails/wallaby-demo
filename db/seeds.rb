@@ -1,8 +1,9 @@
-[ AllPostgresType, Category, Order, Order::Item, Picture, Product, ProductDetail, Tag ].each do |model|
+[ AllPostgresType, Category, Order, Order::Item, Picture, Product, Tag, User ].each do |model|
   ActiveRecord::Base.connection.execute("TRUNCATE #{ model.table_name } RESTART IDENTITY")
 end
+ActiveRecord::Base.connection.execute("TRUNCATE products_tags RESTART IDENTITY")
 
-200.times.each do
+10.times.each do
   all_postgres_type = AllPostgresType.new
   all_postgres_type.string = FFaker::Name.name
   all_postgres_type.text = FFaker::Lorem.paragraph
@@ -44,13 +45,13 @@ end
 
 10.times.each do
   category = Category.new
-  category.name = FFaker::Product.product_name
+  category.name = FFaker::Product.product.split(' ').sample.downcase
   category.save!
 end
 
 10.times.each do
   tag = Tag.new
-  tag.name = FFaker::Product.product_name
+  tag.name = FFaker::Product.product.split(' ').sample.downcase
   tag.save!
 end
 
@@ -58,7 +59,7 @@ end
   product = Product.new
   product.category = Category.all.sample
   product.tags = Tag.all.shuffle.first 3
-  product.name = FFaker::Movie.title
+  product.name = FFaker::Product.product_name
   product.sku = FFaker::Product.model
   product.description = FFaker::Lorem.paragraph
   product.stock = rand 100
@@ -68,15 +69,39 @@ end
   product.available_to_time = FFaker::Time.date
   product.published_at = FFaker::Time.date
   product.save!
-  details = product.build_product_detail
-  details.meta_data = FFaker::Lorem.paragraph
-  details.save!
 end
 
-# 1.times.each do
-#   user = User.new
-#   user.email = 'tian@example.com'
-#   user.password = 'password'
-#   user.password_confirmation = 'password'
-#   user.save!
-# end
+10.times.each do
+  order = Order.new
+  order.customer = FFaker::Name.name
+  order.ordered_at = FFaker::Time.date
+  order.order_number = "N#{order.ordered_at.to_s(:number)}"
+  order.save!
+
+  product = Product.all.sample
+  rand(5).times.each do
+    item = Order::Item.new
+    item.order_id = order.id
+    item.product_id = product.id
+    item.quantity = rand(100)
+    item.price = product.price
+    item.total = item.quantity * item.price
+    item.save!
+  end
+end
+
+1.times.each do
+  user = SuperUser.new
+  user.email = 'tian@example.com'
+  user.password = 'password'
+  user.password_confirmation = 'password'
+  user.save!
+end
+
+1.times.each do
+  user = Operator.new
+  user.email = 'tian@operate.it'
+  user.password = 'password'
+  user.password_confirmation = 'password'
+  user.save!
+end

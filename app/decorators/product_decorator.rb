@@ -1,9 +1,10 @@
 class ProductDecorator < Wallaby::ResourceDecorator
-  self.index_fields['model'] = { label: 'Model Name', type: 'string' }
+  self.index_fields[:model] = { label: 'Model Name', type: 'string' }
   self.index_field_names = %w( id model featured tags )
-  self.filters[:featured] = {
-    label: 'Featured',
-    scope: -> { where(featured: false) }
+  self.filters[:featured] = { default: true }
+  self.filters[:published] = {
+    label: 'Published',
+    scope: -> { where.not published_at: nil }
   }
 
   def model
