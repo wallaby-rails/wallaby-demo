@@ -2,8 +2,8 @@ source 'http://rubygems.org'
 
 ruby '2.4.3'
 
-# gem 'wallaby', path: '../wallaby'
-gem 'wallaby', '~> 5.1.4'
+gem 'wallaby', git: 'https://github.com/reinteractive/wallaby.git'
+# gem 'wallaby', '~> 5.1.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.0'

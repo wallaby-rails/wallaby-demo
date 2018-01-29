@@ -1,3 +1,25 @@
+GIT
+  remote: https://github.com/reinteractive/wallaby.git
+  revision: 27a85c5759ab95f4f8dc6674e32dcd3ab0741bdc
+  specs:
+    wallaby (5.1.4)
+      bootstrap-sass
+      bootstrap3-datetimepicker-rails
+      cancancan
+      codemirror-rails
+      font-awesome-sass
+      jbuilder
+      jquery-minicolors-rails
+      jquery-rails
+      kaminari
+      momentjs-rails
+      parslet
+      rails (>= 4.2.0)
+      responders
+      sass-rails
+      summernote-rails
+      twitter-typeahead-rails
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -116,7 +138,7 @@ GEM
     method_source (0.9.0)
     mini_mime (1.0.0)
     mini_portile2 (2.3.0)
-    minitest (5.11.1)
+    minitest (5.11.3)
     momentjs-rails (2.17.1)
       railties (>= 3.1)
     multi_json (1.13.1)
@@ -210,25 +232,8 @@ GEM
       railties (>= 3.1)
     tzinfo (1.2.4)
       thread_safe (~> 0.1)
-    uglifier (4.1.4)
+    uglifier (4.1.5)
       execjs (>= 0.3.0, < 3)
-    wallaby (5.1.4)
-      bootstrap-sass
-      bootstrap3-datetimepicker-rails
-      cancancan
-      codemirror-rails
-      font-awesome-sass
-      jbuilder
-      jquery-minicolors-rails
-      jquery-rails
-      kaminari
-      momentjs-rails
-      parslet
-      rails (>= 4.2.0)
-      responders
-      sass-rails
-      summernote-rails
-      twitter-typeahead-rails
     warden (1.2.7)
       rack (>= 1.0)
     web-console (2.3.0)
@@ -262,7 +267,7 @@ DEPENDENCIES
   spring
   turbolinks
   uglifier
-  wallaby (~> 5.1.4)
+  wallaby!
   web-console (~> 2.0)
 
 RUBY VERSION
