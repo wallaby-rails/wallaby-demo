@@ -1,2 +1,2 @@
-class ProductsController < Wallaby::ResourcesController
+class ProductsController < Admin::ApplicationController
 end

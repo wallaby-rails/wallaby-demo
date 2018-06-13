@@ -1,4 +1,4 @@
-class ProductDecorator < Wallaby::ResourceDecorator
+class ProductDecorator < Admin::ApplicationDecorator
   self.index_fields[:model] = { label: 'Model Name', type: 'string' }
   self.index_field_names = %w( id model featured tags )
   self.filters[:featured] = { default: true }
