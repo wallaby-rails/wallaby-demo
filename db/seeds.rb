@@ -1,9 +1,9 @@
-[ AllPostgresType, Category, Order, Order::Item, Picture, Product, Tag, User ].each do |model|
-  ActiveRecord::Base.connection.execute("TRUNCATE #{ model.table_name } RESTART IDENTITY")
+[ AllPostgresType, Category, Order, Order::Item, Picture, Product, Profile, Tag, User ].each do |model|
+  ApplicationRecord.connection.execute("TRUNCATE #{ model.table_name } RESTART IDENTITY")
 end
-ActiveRecord::Base.connection.execute("TRUNCATE products_tags RESTART IDENTITY")
+ApplicationRecord.connection.execute("TRUNCATE products_tags RESTART IDENTITY")
 
-10.times.each do
+100.times do
   all_postgres_type = AllPostgresType.new
   all_postgres_type.string = FFaker::Name.name
   all_postgres_type.text = FFaker::Lorem.paragraph
@@ -13,12 +13,12 @@ ActiveRecord::Base.connection.execute("TRUNCATE products_tags RESTART IDENTITY")
   all_postgres_type.datetime = FFaker::Time.date
   all_postgres_type.time = FFaker::Time.date
   all_postgres_type.date = FFaker::Time.date
-  date = Time.zone.parse FFaker::Time.date
+  date = Time.zone.parse FFaker::Time.date.to_s
   all_postgres_type.daterange = date..(date + rand(10).days)
   all_postgres_type.numrange = rand(10)..(rand(100) + 10)
-  date = Time.zone.parse FFaker::Time.date
+  date = Time.zone.parse FFaker::Time.date.to_s
   all_postgres_type.tsrange = date..(date + rand(10).days)
-  date = Time.zone.parse FFaker::Time.date
+  date = Time.zone.parse FFaker::Time.date.to_s
   all_postgres_type.tstzrange = date..(date + rand(10).days)
   all_postgres_type.int4range = rand(10)..(rand(100) + 10)
   all_postgres_type.int8range = rand(10)..(rand(100) + 10)
@@ -43,19 +43,19 @@ ActiveRecord::Base.connection.execute("TRUNCATE products_tags RESTART IDENTITY")
   all_postgres_type.save!
 end
 
-10.times.each do
+50.times do
   category = Category.new
   category.name = FFaker::Product.product.split(' ').sample
   category.save!
 end
 
-10.times.each do
+30.times do
   tag = Tag.new
   tag.name = FFaker::Product.product.split(' ').sample.downcase
   tag.save!
 end
 
-100.times.each do
+100.times do
   product = Product.new
   product.category = Category.all.sample
   product.tags = Tag.all.shuffle.first 3
@@ -71,15 +71,17 @@ end
   product.save!
 end
 
-10.times.each do
+products = Product.all
+
+10.times do
   order = Order.new
   order.customer = FFaker::Name.name
   order.ordered_at = FFaker::Time.date
   order.order_number = "N#{order.ordered_at.to_s(:number)}"
   order.save!
 
-  product = Product.all.sample
-  rand(5).times.each do
+  product = products.sample
+  rand(5).times do
     item = Order::Item.new
     item.order_id = order.id
     item.product_id = product.id
@@ -90,18 +92,33 @@ end
   end
 end
 
-1.times.each do
+18.times do
+  picture = Picture.new
+  picture.name = FFaker::Name.name
+  picture.imageable = [Product, User, Category].sample.all.sample
+  picture.file.attach(io: open('https://picsum.photos/100'), filename: "#{FFaker::Name.name}.jpg")
+  picture.save
+end
+
+1.times do
   user = SuperUser.new
-  user.email = 'tian@example.com'
+  user.email = 'admin@wallaby.rails'
   user.password = 'password'
   user.password_confirmation = 'password'
   user.save!
 end
 
-1.times.each do
+1.times do
   user = Operator.new
-  user.email = 'tian@operate.it'
+  user.email = 'operator@wallaby.rails'
   user.password = 'password'
   user.password_confirmation = 'password'
   user.save!
+end
+
+User.find_each do |user|
+  user.create_profile(
+    nickname: FFaker::Name.first_name,
+    bio: FFaker::Lorem.paragraph
+  )
 end

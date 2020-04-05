@@ -1,4 +1,4 @@
-class Product < ActiveRecord::Base
+class Product < ApplicationRecord
   has_one :picture, as: :imageable
   has_many :items, class_name: Order::Item.name
   has_many :orders, through: :items

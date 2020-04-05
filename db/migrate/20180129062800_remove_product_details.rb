@@ -1,4 +1,4 @@
-class RemoveProductDetails < ActiveRecord::Migration[5.1]
+class RemoveProductDetails < ActiveRecord::Migration[4.2][5.1]
   def change
     drop_table :product_details
     drop_table :people
