@@ -2,15 +2,15 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
+# This file is the source Rails uses to define your schema when running `rails
+# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_13_222706) do
+ActiveRecord::Schema.define(version: 2020_04_05_064701) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2018_06_13_222706) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "all_postgres_types", force: :cascade do |t|
+  create_table "all_postgres_types", id: :serial, force: :cascade do |t|
     t.string "string"
     t.text "text"
     t.integer "integer"
@@ -74,11 +74,19 @@ ActiveRecord::Schema.define(version: 2018_06_13_222706) do
     t.money "money", scale: 2
   end
 
-  create_table "categories", force: :cascade do |t|
+  create_table "blogs", force: :cascade do |t|
+    t.string "subject"
+    t.text "content"
+    t.datetime "published_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "categories", id: :serial, force: :cascade do |t|
     t.string "name"
   end
 
-  create_table "order_items", force: :cascade do |t|
+  create_table "order_items", id: :serial, force: :cascade do |t|
     t.integer "order_id"
     t.integer "product_id"
     t.integer "quantity"
@@ -88,13 +96,13 @@ ActiveRecord::Schema.define(version: 2018_06_13_222706) do
     t.index ["product_id"], name: "index_order_items_on_product_id"
   end
 
-  create_table "orders", force: :cascade do |t|
+  create_table "orders", id: :serial, force: :cascade do |t|
     t.string "customer"
     t.datetime "ordered_at"
     t.string "order_number"
   end
 
-  create_table "pictures", force: :cascade do |t|
+  create_table "pictures", id: :serial, force: :cascade do |t|
     t.string "name"
     t.integer "imageable_id"
     t.string "imageable_type"
@@ -104,7 +112,7 @@ ActiveRecord::Schema.define(version: 2018_06_13_222706) do
     t.index ["imageable_type", "imageable_id"], name: "index_pictures_on_imageable_type_and_imageable_id"
   end
 
-  create_table "products", force: :cascade do |t|
+  create_table "products", id: :serial, force: :cascade do |t|
     t.integer "category_id"
     t.string "sku"
     t.string "name"
@@ -126,11 +134,17 @@ ActiveRecord::Schema.define(version: 2018_06_13_222706) do
     t.index ["tag_id"], name: "index_products_tags_on_tag_id"
   end
 
-  create_table "tags", force: :cascade do |t|
+  create_table "profiles", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "nickname"
+    t.text "bio"
+  end
+
+  create_table "tags", id: :serial, force: :cascade do |t|
     t.string "name"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", id: :serial, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"

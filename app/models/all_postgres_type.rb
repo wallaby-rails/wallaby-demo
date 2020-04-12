@@ -1,2 +1,2 @@
-class AllPostgresType < ActiveRecord::Base
+class AllPostgresType < ApplicationRecord
 end

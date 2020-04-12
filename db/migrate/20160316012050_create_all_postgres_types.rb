@@ -1,4 +1,4 @@
-class CreateAllPostgresTypes < ActiveRecord::Migration
+class CreateAllPostgresTypes < ActiveRecord::Migration[4.2]
   def change
     enable_extension 'hstore' unless extension_enabled?('hstore')
     enable_extension 'ltree' unless extension_enabled?('ltree')

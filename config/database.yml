@@ -1,6 +1,8 @@
 defaults: &defaults
   adapter: postgresql
-  host: localhost
+  min_messages: ERROR
+  pool: 5
+  timeout: 5000
 
 development:
   <<: *defaults
