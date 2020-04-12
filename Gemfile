@@ -1,9 +1,10 @@
 source 'http://rubygems.org'
 
-# gem 'wallaby'
-gem 'wallaby', path: '../wallaby'
-gem 'wallaby-core', path: '../wallaby-core'
-gem 'wallaby-active_record', path: '../wallaby-active_record'
+gem 'wallaby', '~> 6.1.2'
+gem 'simple_blog_theme', git: 'https://github.com/wallaby-rails/simple_blog_theme.git', branch: 'master'
+# gem 'wallaby', path: '../wallaby'
+# gem 'wallaby-core', path: '../wallaby-core'
+# gem 'wallaby-active_record', path: '../wallaby-active_record'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.2'
@@ -13,7 +14,6 @@ gem 'pg'
 
 gem 'devise'
 gem 'cancancan'
-gem 'kaminari'
 
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
