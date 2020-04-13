@@ -1,5 +1,7 @@
 source 'http://rubygems.org'
 
+ruby '2.7.1'
+
 gem 'wallaby', '~> 6.1.2'
 gem 'simple_blog_theme', git: 'https://github.com/wallaby-rails/simple_blog_theme.git', branch: 'master'
 # gem 'wallaby', path: '../wallaby'
