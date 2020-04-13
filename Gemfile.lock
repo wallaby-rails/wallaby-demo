@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/wallaby-rails/simple_blog_theme.git
+  revision: a1931615e652293be8a938730727a26ea903568d
+  branch: master
+  specs:
+    simple_blog_theme (0.1.0)
+      rails
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -287,6 +295,7 @@ DEPENDENCIES
   rails (~> 6.0.2, >= 6.0.2.2)
   sass-rails (>= 6)
   selenium-webdriver
+  simple_blog_theme!
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
