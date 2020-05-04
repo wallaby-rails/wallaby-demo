@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
   devise_for :users
-  mount Wallaby::Engine => "/admin"
+  wallaby_mount at: '/admin'
   root to: redirect('/admin')
 end
