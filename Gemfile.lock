@@ -6,6 +6,40 @@ GIT
     simple_blog_theme (0.1.0)
       rails
 
+PATH
+  remote: ../wallaby-active_record
+  specs:
+    wallaby-active_record (0.3.0)
+      activerecord (>= 4.2.0)
+      wallaby-core (= 0.3.0)
+
+PATH
+  remote: ../wallaby-core
+  specs:
+    wallaby-core (0.3.0)
+      activemodel (>= 4.2.0)
+      parslet
+      railties (>= 4.2.0)
+      responders
+      wallaby-view (~> 0.1.2)
+
+PATH
+  remote: ../wallaby
+  specs:
+    wallaby (6.1.3)
+      bootstrap
+      bootstrap4-datetime-picker-rails
+      font-awesome-sass
+      jbuilder
+      jquery-minicolors-rails
+      jquery-rails
+      momentjs-rails
+      sass-rails
+      summernote-rails
+      twitter-typeahead-rails
+      wallaby-active_record (= 0.3.0)
+      wallaby-core
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -222,38 +256,13 @@ GEM
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
-    turbolinks (5.2.1)
-      turbolinks-source (~> 5.2)
-    turbolinks-source (5.2.0)
     twitter-typeahead-rails (0.11.1)
       actionpack (>= 3.1)
       jquery-rails
       railties (>= 3.1)
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
-    wallaby (6.1.2)
-      bootstrap
-      bootstrap4-datetime-picker-rails
-      font-awesome-sass
-      jbuilder
-      jquery-minicolors-rails
-      jquery-rails
-      momentjs-rails
-      sass-rails
-      summernote-rails
-      twitter-typeahead-rails
-      wallaby-active_record (= 0.2.5)
-      wallaby-core
-    wallaby-active_record (0.2.5)
-      activerecord (>= 4.2.0)
-      wallaby-core (= 0.2.2)
-    wallaby-core (0.2.2)
-      activemodel (>= 4.2.0)
-      parslet
-      railties (>= 4.2.0)
-      responders
-      wallaby-view (~> 0.1.2)
-    wallaby-view (0.1.4)
+    wallaby-view (0.1.5)
       railties (>= 4.2.0)
       request_store
     warden (1.2.8)
@@ -298,9 +307,10 @@ DEPENDENCIES
   simple_blog_theme!
   spring
   spring-watcher-listen (~> 2.0.0)
-  turbolinks (~> 5)
   tzinfo-data
-  wallaby (~> 6.1.2)
+  wallaby!
+  wallaby-active_record!
+  wallaby-core!
   web-console (>= 3.3.0)
   webdrivers
   webpacker (~> 4.0)
