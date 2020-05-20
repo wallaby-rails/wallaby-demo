@@ -1,10 +1,9 @@
-GIT
-  remote: https://github.com/wallaby-rails/simple_blog_theme.git
-  revision: a1931615e652293be8a938730727a26ea903568d
-  branch: master
+PATH
+  remote: ../simple_blog_theme
   specs:
     simple_blog_theme (0.1.0)
-      rails
+      wallaby-active_record
+      wallaby-core
 
 PATH
   remote: ../wallaby-active_record

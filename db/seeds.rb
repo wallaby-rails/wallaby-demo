@@ -102,6 +102,14 @@ end
   picture.save
 end
 
+30.times do
+  blog = Blog.new
+  blog.subject = FFaker::Lorem.sentence
+  blog.content = FFaker::Lorem.sentence(100)
+  blog.published_at = Time.current - rand(100).days
+  blog.save!
+end
+
 1.times do
   user = SuperUser.new
   user.email = 'admin@wallaby.rails'
