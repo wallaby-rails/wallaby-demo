@@ -1,3 +1,5 @@
+require 'ffaker'
+
 [ AllPostgresType, Category, Order, Order::Item, Picture, Product, Profile, Tag, User ].each do |model|
   ApplicationRecord.connection.execute("TRUNCATE #{ model.table_name } RESTART IDENTITY")
 end
