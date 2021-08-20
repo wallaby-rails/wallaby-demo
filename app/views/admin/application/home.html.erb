@@ -6,8 +6,9 @@
 <p>If interested, check out the demo repo at <a href="https://github.com/wallaby-rails/wallaby-demo" target="_blank">https://github.com/wallaby-rails/wallaby-demo</a>.
 <h3>What to check out:</h3>
 
-<h4>When used as Admin Interface</h4>
+<h4>For Admin Interface</h4>
 <ul>
+  <% #byebug %>
   <li>Check out how Wallaby handles models (e.g. <%= index_link ActiveRecord::SchemaMigration %>) which have no primary key.</li>
   <li>Check out all the PostgreSQL data types that Wallaby supports at <%= index_link AllPostgresType %> model pages (
     <%= index_link(AllPostgresType) { 'index' } %> /
@@ -26,12 +27,22 @@
     </ul>
   </li>
   <li>Check out how ActiveStorage is handled for <%= index_link Picture %> model.</li>
+  <li>Check out how custom filters (e.g. Featured, Published) are used for <%= index_link Product %> model.</li>
 </ul>
 
-<h4>When used for general purpose:</h4>
+<h4>For general purpose:</h4>
 <ul>
   <li>
-    <div>As <%= link_to 'a blog', main_app.blogs_path, target: :_blank %>. Code as below:</div>
+    <div>To use the features that Wallaby has implemented (e.g. automated Resourceful actions, user-friendly UI and authorization) outside of Admin Interface,
+      for example, for <%= link_to 'Product', main_app.products_path, target: :_blank %> pages, simply include <code>Wallaby::ResourcesConcern</code> in <code>ProductsController</code>. Code as below:</div>
+    <pre><code>
+class ProductsController < ApplicationController
+  include Wallaby::ResourcesConcern
+end
+    </code></pre>
+  </li>
+  <li>
+    <div>Fully functional <%= link_to 'blog system', main_app.blogs_path, target: :_blank %> by using the <%= link_to 'simple blog theme', 'https://github.com/wallaby-rails/wallaby-demo', target: :_blank %> (a pure set of view files). Code as below:</div>
     <pre><code>
 class BlogsController < ApplicationController
   include Wallaby::ResourcesConcern
@@ -40,7 +51,7 @@ end
     </code></pre>
   </li>
   <li>
-    <div>As <%= link_to 'a blog JSON:API', main_app.api_blogs_path(format: :json), target: :_blank %>. Code as below:</div>
+    <div>Turn into <%= link_to 'a blog JSON:API', main_app.api_blogs_path(format: :json), target: :_blank %> by using a different responder <code>Wallaby::JsonApiResponder</code>. Code as below:</div>
     <pre><code>
 module Api
   class BlogsController < ActionController::API

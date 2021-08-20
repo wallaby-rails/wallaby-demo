@@ -16,9 +16,9 @@ PATH
   remote: ../wallaby-core
   specs:
     wallaby-core (0.3.0)
-      activemodel (>= 4.2.0)
+      activemodel (>= 4.2.0, <= 6.2.0)
       parslet
-      railties (>= 4.2.0)
+      railties (>= 4.2.0, <= 6.2.0)
       responders
       wallaby-view (~> 0.1.2)
 
