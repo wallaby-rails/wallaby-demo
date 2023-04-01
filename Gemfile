@@ -1,8 +1,11 @@
 source 'http://rubygems.org'
 
-ruby '2.7.1'
+ruby '2.7.7'
 
-gem 'wallaby', '~> 6.1.2'
+# gem 'wallaby', '~> 6.1.2'
+gem 'wallaby', git: 'git@github.com:wallaby-rails/wallaby.git', branch: 'develop'
+gem 'wallaby-core', git: 'git@github.com:wallaby-rails/wallaby-core.git', branch: 'develop'
+gem 'wallaby-active_record', git: 'git@github.com:wallaby-rails/wallaby-active_record.git', branch: 'develop'
 gem 'simple_blog_theme', git: 'https://github.com/wallaby-rails/simple_blog_theme.git', branch: 'master'
 # gem 'wallaby', path: '../wallaby'
 # gem 'wallaby-core', path: '../wallaby-core'
@@ -40,7 +43,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'ffaker', require: false
 
-gem 'font-awesome-sass', '~> 4.0'
+gem 'bootstrap'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

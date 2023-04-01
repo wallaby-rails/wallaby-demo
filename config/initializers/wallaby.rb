@@ -1,6 +1,6 @@
 # configuration for wallaby
 Wallaby.config do |config|
-  config.features.turbolinks_enabled = true
+  # config.features.turbolinks_enabled = true
   ActiveRecord::SchemaMigration
-  config.models.exclude []
+  # config.models.exclude []
 end
