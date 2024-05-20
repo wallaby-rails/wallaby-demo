@@ -26,4 +26,3 @@ yarn-debug.log*
 /storage/*
 
 /config/master.key
-Gemfile.lock
