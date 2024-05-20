@@ -27,7 +27,7 @@ ApplicationRecord.connection.execute("TRUNCATE products_tags RESTART IDENTITY")
   all_postgres_type.binary = nil
   all_postgres_type.boolean = [ true, false, nil ].sample
   all_postgres_type.bigint = 100
-  all_postgres_type.xml = "<text>#{ FFaker::Lorem.paragraph }</text>"
+  # all_postgres_type.xml = "<text>#{ FFaker::Lorem.paragraph }</text>"
   all_postgres_type.tsvector =
   all_postgres_type.hstore = { 'system' => 'test' }
   all_postgres_type.inet = FFaker::Internet.ip_v4_address
@@ -98,7 +98,7 @@ end
   picture = Picture.new
   picture.name = FFaker::Name.name
   picture.imageable = [Product, User, Category].sample.all.sample
-  picture.file.attach(io: open('https://picsum.photos/100'), filename: "#{FFaker::Name.name}.jpg")
+  picture.file.attach(io: URI.open('https://picsum.photos/100'), filename: "#{FFaker::Name.name}.jpg")
   picture.save
 end
 

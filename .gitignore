@@ -24,3 +24,5 @@
 yarn-debug.log*
 .yarn-integrity
 /storage/*
+
+/config/master.key

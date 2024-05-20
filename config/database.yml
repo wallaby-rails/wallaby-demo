@@ -1,4 +1,5 @@
 defaults: &defaults
+  username: postgres
   adapter: postgresql
   min_messages: ERROR
   pool: 5
