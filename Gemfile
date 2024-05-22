@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-ruby '3.2.2'
+ruby '3.3.1'
 
 git 'https://github.com/wallaby-rails/wallaby-rails.git' do
   gem "wallaby"
