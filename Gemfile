@@ -24,7 +24,7 @@ end
 # gem 'wallaby-active_record', '~> 0.2.0', path: '../wallaby-active_record'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 7.0.1'
+gem 'rails', '~> 8.0.1'
 gem 'base64'
 gem 'bigdecimal'
 gem 'mutex_m'
