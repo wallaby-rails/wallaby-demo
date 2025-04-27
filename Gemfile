@@ -25,6 +25,10 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 7.0.1'
+gem 'base64'
+gem 'bigdecimal'
+gem 'mutex_m'
+gem 'csv'
 
 # Date sources
 gem 'pg'
