@@ -1,0 +1,29 @@
+FROM ruby:3.4
+
+# Rails app lives here
+WORKDIR /rails
+
+# Install nodejs
+RUN apt-get update -qq && \
+    apt-get install -y curl && \
+    curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && \
+    apt-get install -y nodejs && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install yarn
+RUN npm install -g yarn
+
+# Setup the latest postgresql repo
+RUN apt-get update -qq && \
+    apt-get install -y --no-install-recommends postgresql-common && \
+    /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh -y
+
+# Install base packages
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y curl libjemalloc2 libvips postgresql-client && \
+    rm -rf /var/lib/apt/lists /var/cache/apt/archives
+
+# Install packages needed to build gems
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y build-essential git libpq-dev libyaml-dev pkg-config && \
+    rm -rf /var/lib/apt/lists /var/cache/apt/archives
