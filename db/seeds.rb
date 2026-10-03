@@ -1,4 +1,5 @@
 require 'ffaker'
+require 'open-uri'
 
 [ AllPostgresType, Category, Order, Order::Item, Picture, Product, Profile, Tag, User ].each do |model|
   ApplicationRecord.connection.execute("TRUNCATE #{ model.table_name } RESTART IDENTITY")

@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-ruby '3.4.2'
+ruby '4.0.7'
 
 git 'https://github.com/wallaby-rails/wallaby-rails.git' do
   gem "wallaby"
@@ -24,7 +24,7 @@ end
 # gem 'wallaby-active_record', '~> 0.2.0', path: '../wallaby-active_record'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 8.0.1'
+gem 'rails'
 gem 'base64'
 gem 'bigdecimal'
 gem 'mutex_m'
@@ -40,7 +40,7 @@ gem 'cancancan'
 gem 'puma'
 # Use SCSS for stylesheets
 gem 'sass-rails'
-gem 'font-awesome-sass', '< 6'
+gem 'font-awesome-sass'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -80,8 +80,6 @@ group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara'
   gem 'selenium-webdriver'
-  # Easy installation and use of web drivers to run system tests with browsers
-  gem 'webdrivers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
