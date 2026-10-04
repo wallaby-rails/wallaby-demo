@@ -3,6 +3,6 @@ class Ability
 
   def initialize(user)
     can :manage, :all
-    cannot [:create, :update, :destroy], ActiveRecord::SchemaMigration
+    cannot [:create, :update, :destroy], SchemaMigration
   end
 end
