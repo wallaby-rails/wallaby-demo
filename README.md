@@ -1,6 +1,6 @@
 # WallabyDemo
 
-This is the demo repository for the [Wallaby](https://github.com/wallaby-rails/wallaby) gem. It showcases what Wallaby is capable of.
+This is the demo repository for the [Wallaby](https://github.com/wallaby-rails/wallaby-rails) gem. It showcases what Wallaby is capable of.
 
 A live demo is running on [Render](https://render.com/):
 
@@ -16,4 +16,4 @@ The demo customizes Wallaby in the following places:
 
 ## Feedback
 
-Feedback is welcome via [https://github.com/wallaby-rails/wallaby/issues/new](https://github.com/wallaby-rails/wallaby/issues/new).
+Feedback is welcome via [https://github.com/wallaby-rails/wallaby-rails/issues/new](https://github.com/wallaby-rails/wallaby-rails/issues/new).

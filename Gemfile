@@ -9,11 +9,11 @@ git 'https://github.com/wallaby-rails/wallaby-rails.git' do
   gem "wallaby-active_record"
 end
 # gem 'wallaby', '~> 6.1.2'
-# gem 'wallaby', git: 'git@github.com:wallaby-rails/wallaby.git', branch: 'develop'
+# gem 'wallaby', git: 'git@github.com:wallaby-rails/wallaby-rails.git', branch: 'develop'
 # gem 'wallaby-core', git: 'git@github.com:wallaby-rails/wallaby-core.git', branch: 'develop'
 # gem 'wallaby-active_record', git: 'git@github.com:wallaby-rails/wallaby-active_record.git', branch: 'develop'
 # gem 'simple_blog_theme', git: 'https://github.com/wallaby-rails/simple_blog_theme.git', branch: 'master'
-# gem 'wallaby', git: 'https://github.com/wallaby-rails/wallaby.git', branch: 'develop'
+# gem 'wallaby', git: 'https://github.com/wallaby-rails/wallaby-rails.git', branch: 'develop'
 # gem 'wallaby-core', git: 'https://github.com/wallaby-rails/wallaby-core.git', branch: 'develop'
 # gem 'wallaby-active_record', git: 'https://github.com/wallaby-rails/wallaby-active_record.git', branch: 'develop'
 # gem 'wallaby', '7.0.0.beta1', path: '../wallaby'
