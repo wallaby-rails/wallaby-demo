@@ -1,5 +1,38 @@
 require 'ffaker'
 require 'open-uri'
+require 'stringio'
+
+PICTURE_URL = 'https://picsum.photos/100'.freeze
+
+# Downloads a sample photo for the seeds. Remote hosts are not always reachable
+# from build environments (picsum.photos answers HTTP 522 on Render), so fall
+# back to a locally generated placeholder instead of aborting the deploy.
+# Once a download fails the remaining pictures skip the network entirely.
+def remote_picture_data(index)
+  return if @remote_pictures_available == false
+
+  URI.open("#{ PICTURE_URL }?random=#{ index }", open_timeout: 5, read_timeout: 10, &:read)
+rescue StandardError => error
+  @remote_pictures_available = false
+  Rails.logger.warn "[seeds] Could not download a picture (#{ error.class }: #{ error.message }); using placeholders"
+  nil
+end
+
+def seed_picture(index)
+  if (data = remote_picture_data(index))
+    return { io: StringIO.new(data), filename: "#{ FFaker::Name.name }.jpg", content_type: 'image/jpeg' }
+  end
+
+  background = %w[#4e73df #1cc88a #36b9cc #f6c23e #e74a3b #858796].fetch(index % 6)
+  svg = <<~SVG
+    <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+      <rect width="100" height="100" fill="#{ background }"/>
+      <circle cx="50" cy="36" r="15" fill="#ffffff" fill-opacity="0.85"/>
+      <path d="M16 92 L40 54 L60 76 L72 62 L92 92 Z" fill="#ffffff" fill-opacity="0.85"/>
+    </svg>
+  SVG
+  { io: StringIO.new(svg), filename: "#{ FFaker::Name.name }.svg", content_type: 'image/svg+xml' }
+end
 
 [ AllPostgresType, Category, Order, Order::Item, Picture, Product, Profile, Tag, User ].each do |model|
   ApplicationRecord.connection.execute("TRUNCATE #{ model.table_name } RESTART IDENTITY")
@@ -95,14 +128,6 @@ products = Product.all
   end
 end
 
-18.times do
-  picture = Picture.new
-  picture.name = FFaker::Name.name
-  picture.imageable = [Product, User, Category].sample.all.sample
-  picture.file.attach(io: URI.open('https://picsum.photos/100'), filename: "#{FFaker::Name.name}.jpg")
-  picture.save
-end
-
 1.times do
   user = SuperUser.new
   user.email = 'admin@wallaby.rails'
@@ -124,4 +149,14 @@ User.find_each do |user|
     nickname: FFaker::Name.first_name,
     bio: FFaker::Lorem.paragraph
   )
+end
+
+# Pictures are seeded after the users so every imageable model has records to
+# attach to (seeding them earlier left the User pictures unsaved).
+18.times do |index|
+  picture = Picture.new
+  picture.name = FFaker::Name.name
+  picture.imageable = [ Product, User, Category ].sample.all.sample
+  picture.file.attach(**seed_picture(index))
+  picture.save!
 end
